@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void freestack(char * stack, int size){
+	for(int i=0;i<size;i++)
+		free(stack[i]);
+}
 void initialize(char *stack, int size){
 	for (int i = 0; i < size; i++)
 		stack[i] = NULL;
@@ -41,7 +45,7 @@ char pop(char *stack, int size){
 			}
 		}
 		popnum = stack[top];
-		free(stack[top]);
+		stack[top]=NULL;
 	}
 	return popnum;
 }
@@ -87,6 +91,7 @@ int main(void){
 			break;
 		case 3:
 			printf("종료합니다.\n");
+			freestack(stack, size);
 			return 0;
 		default:
 			printf("1~3 사이의 값만 입력하세요.\n");
