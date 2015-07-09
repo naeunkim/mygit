@@ -41,7 +41,7 @@ char pop(char *stack, int size){
 			}
 		}
 		popnum = stack[top];
-		stack[top] = NULL;
+		free(stack[top]);
 	}
 	return popnum;
 }
